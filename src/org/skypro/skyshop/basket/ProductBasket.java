@@ -6,7 +6,6 @@ public class ProductBasket {
 
     Product[] basket;
     private static int index = 0;
-    private static boolean key;
 
     public ProductBasket() {
         basket = new Product[5];
@@ -39,11 +38,11 @@ public class ProductBasket {
     }
 
     public boolean isBasketEmpty() {
-        for (int i = 0; i < basket.length; i++) {
-            if (basket == null) {
-                key = true;
-            } else {
+        boolean key = true;
+        for (Product value : basket) {
+            if (value == null) {
                 key = false;
+                break;
             }
         }
         return key;
@@ -51,11 +50,9 @@ public class ProductBasket {
 
     public int getPriceBasket() {
         int price = 0;
-        for (int i = 0; i < basket.length; i++) {
-            if (basket[i] != null) {
-                price += basket[i].getPrice();
-            } else {
-                continue;
+        for (Product value : basket) {
+            if (value != null) {
+                price += value.getPrice();
             }
         }
         return price;
@@ -72,17 +69,13 @@ public class ProductBasket {
         for (Product value : basket) {
             if (value != null) {
                 System.out.println(value);
-            } else {
-                continue;
             }
         }
         System.out.println("Итого: " + getPriceBasket());
     }
 
     public boolean isProductNameInBasket(String name) {
-        if (!key) {
-            System.out.println("В корзине пусто");
-        } else {
+        if (isBasketEmpty()) {
             for (Product value : basket) {
                 if (value.getName().equals(name)) {
                     return true;
@@ -101,7 +94,7 @@ public class ProductBasket {
     }
 
     public void cleanBasket() {
-        if (basket.length == 0) {
+        if (!isBasketEmpty()) {
             System.out.println("В корзине пусто");
         } else {
             for (int i = 0; i < basket.length; i++) {

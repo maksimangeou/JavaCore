@@ -55,6 +55,6 @@ public class App {
         System.out.println();
 
         System.out.println("Поиск товара по имени в пустой корзине");
-        productBasket.isProductNameInBasket(tomato.getName());
+        productBasket.searchProductInBasket(tomato);
     }
 }
