@@ -4,11 +4,19 @@ import org.skypro.skyshop.product.Product;
 
 public class ProductBasket {
 
-    Product[] basket;
+    private Product[] basket;
     private static int index = 0;
 
     public ProductBasket() {
         basket = new Product[5];
+    }
+
+    public Product[] getBasket() {
+        return basket;
+    }
+
+    public void setBasket(Product[] basket) {
+        this.basket = basket;
     }
 
     public static int getIndex() {
@@ -59,16 +67,17 @@ public class ProductBasket {
     }
 
     public void showPriceBasket() {
-        System.out.println(getPriceBasket());
+        System.out.println("Стоимость корзины: " + getPriceBasket());
     }
 
     public void showBasket() {
-        if (basket.length == 0) {
+        if (!isBasketEmpty()) {
             System.out.println("В корзине пусто");
-        }
-        for (Product value : basket) {
-            if (value != null) {
-                System.out.println(value);
+        } else {
+            for (Product value : basket) {
+                if (value != null) {
+                    System.out.println(value);
+                }
             }
         }
         System.out.println("Итого: " + getPriceBasket());
@@ -86,6 +95,9 @@ public class ProductBasket {
     }
 
     public void searchProductInBasket(Product product) {
+        if (!isBasketEmpty()) {
+            System.out.println("В корзине пусто");
+        }
         if (isProductNameInBasket(product.getName())) {
             System.out.println("Продукт " + product.getName() + " найден");
         } else {

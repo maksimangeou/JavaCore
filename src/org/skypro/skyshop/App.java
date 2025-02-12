@@ -19,7 +19,6 @@ public class App {
         productBasket.addProductIntoBasket(tomato);
         productBasket.addProductIntoBasket(banana);
         productBasket.addProductIntoBasket(milk);
-        productBasket.showBasket();
         System.out.println();
 
         System.out.println("Добавление продукта в заполненную корзину");
@@ -31,7 +30,7 @@ public class App {
         System.out.println();
 
         System.out.println("Получение стоимости корзины с несколькими товарами");
-        productBasket.getPriceBasket();
+        productBasket.showPriceBasket();
         System.out.println();
 
         System.out.println("Поиск товара, который есть в корзине");
