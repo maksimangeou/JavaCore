@@ -29,7 +29,7 @@ public class ProductBasket {
 
     public void addProductIntoBasket(Product product) {
         if (isIndexEmpty()) {
-            basket[getIndex()] = product;
+            basket[index] = product;
         } else {
             System.out.println("Невозможно добавить продукт");
         }
@@ -38,7 +38,7 @@ public class ProductBasket {
     public boolean isIndexEmpty() {
         for (int i = 0; i < basket.length; i++) {
             if (basket[i] == null) {
-                setIndex(i);
+                index = i;
                 return true;
             }
         }
@@ -46,10 +46,10 @@ public class ProductBasket {
     }
 
     public boolean isBasketEmpty() {
-        boolean key = true;
+        boolean key = false;
         for (Product value : basket) {
             if (value == null) {
-                key = false;
+                key = true;
                 break;
             }
         }
@@ -71,7 +71,7 @@ public class ProductBasket {
     }
 
     public void showBasket() {
-        if (!isBasketEmpty()) {
+        if (isBasketEmpty()) {
             System.out.println("В корзине пусто");
         } else {
             for (Product value : basket) {
@@ -84,21 +84,20 @@ public class ProductBasket {
     }
 
     public boolean isProductNameInBasket(String name) {
-        if (isBasketEmpty()) {
-            for (Product value : basket) {
-                if (value.getName().equals(name)) {
-                    return true;
-                }
+        boolean key = false;
+        for (Product value : basket) {
+            if (value.getName().equals(name)) {
+                return true;
             }
         }
         return false;
     }
 
     public void searchProductInBasket(Product product) {
-        if (!isBasketEmpty()) {
-            System.out.println("В корзине пусто");
-        }
-        if (isProductNameInBasket(product.getName())) {
+        if (isBasketEmpty()) {
+            System.out.println("В корзине пусто \n" +
+                    "Продукт " + product.getName() + " не найден");
+        } else if (isProductNameInBasket(product.getName())) {
             System.out.println("Продукт " + product.getName() + " найден");
         } else {
             System.out.println("Продукт " + product.getName() + " не найден");
@@ -106,7 +105,7 @@ public class ProductBasket {
     }
 
     public void cleanBasket() {
-        if (!isBasketEmpty()) {
+        if (isBasketEmpty()) {
             System.out.println("В корзине пусто");
         } else {
             for (int i = 0; i < basket.length; i++) {
