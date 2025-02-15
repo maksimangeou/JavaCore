@@ -18,6 +18,7 @@ public class App {
         Product tomato = new DiscountedProduct("помидоры", 200, 20);
         Product banana = new DiscountedProduct("бананы", 249, 30);
         Product milk = new FixPriceProduct("молоко");
+        Product chocolate = new DiscountedProduct("шоколад", 39.99, 20);
 
         Article article1 = new Article("Польза апельсинов", "Текст номер 1");
         Article article2 = new Article("Садоводы и огородники","Текст содержит в себе огурцы и помидоры");
@@ -32,5 +33,49 @@ public class App {
         searchEngine.search("огородник");
         searchEngine.search("огурцы");
         searchEngine.search("Лактоза");
+
+
+        System.out.println("Добавление продуктов в корзину");
+        productBasket.addProductIntoBasket(orange);
+        productBasket.addProductIntoBasket(cucumber);
+        productBasket.addProductIntoBasket(tomato);
+        productBasket.addProductIntoBasket(banana);
+        productBasket.addProductIntoBasket(milk);
+        System.out.println();
+
+        System.out.println("Добавление продукта в заполненную корзину");
+        productBasket.addProductIntoBasket(chocolate);
+        System.out.println();
+
+        System.out.println("Печать содержимого корзины с несколькими товарами");
+        productBasket.showBasket();
+        System.out.println();
+
+        System.out.println("Получение стоимости корзины с несколькими товарами");
+        productBasket.showPriceBasket();
+        System.out.println();
+
+        System.out.println("Поиск товара, который есть в корзине");
+        productBasket.searchProductInBasket(orange);
+        System.out.println();
+
+        System.out.println("Поиск товара, которого нет в корзине");
+        productBasket.searchProductInBasket(chocolate);
+        System.out.println();
+
+        System.out.println("Очистка корзины");
+        productBasket.cleanBasket();
+        System.out.println();
+
+        System.out.println("Печать содержимого пустой корзины");
+        productBasket.showBasket();
+        System.out.println();
+
+        System.out.println("Получение стоимости пустой корзины");
+        productBasket.showPriceBasket();
+        System.out.println();
+
+        System.out.println("Поиск товара по имени в пустой корзине");
+        productBasket.searchProductInBasket(tomato);
     }
 }
