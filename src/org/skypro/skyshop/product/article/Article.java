@@ -12,15 +12,21 @@ public final class Article implements Searchable {
     }
 
     @Override
-    public String searchTerm(String term) {
+    public boolean isContentTerm(String term) {
+        boolean key = false;
         if (title.equals(term) || text.equals(term)) {
-            return toString();
+            key = true;
         }
-        return null;
+        return key;
     }
 
     @Override
-    public String getSearchedTitle() {
+    public String searchTerm(String term) {
+        return toString();
+    }
+
+    @Override
+    public String getSearchedContent() {
         return "ARTICLE";
     }
 }

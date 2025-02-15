@@ -43,7 +43,7 @@ public abstract class Product implements Searchable {
     }
 
     @Override
-    public String getSearchedTitle() {
+    public String getSearchedContent() {
         return "PRODUCT";
     }
 }
