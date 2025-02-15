@@ -6,6 +6,11 @@ public final class Article implements Searchable {
     private String title;
     private String text;
 
+    public Article(String title, String text) {
+        this.title = title;
+        this.text = text;
+    }
+
     @Override
     public String toString() {
         return title + '\n' + text;
@@ -14,7 +19,7 @@ public final class Article implements Searchable {
     @Override
     public boolean isContentTerm(String term) {
         boolean key = false;
-        if (title.equals(term) || text.equals(term)) {
+        if (title.contains(term) || text.contains(term)) {
             key = true;
         }
         return key;
@@ -22,7 +27,10 @@ public final class Article implements Searchable {
 
     @Override
     public String searchTerm(String term) {
-        return toString();
+        if (isContentTerm(term)) {
+            return toString();
+        }
+        return null;
     }
 
     @Override

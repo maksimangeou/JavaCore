@@ -28,7 +28,7 @@ public abstract class Product implements Searchable {
     @Override
     public boolean isContentTerm(String term) {
         boolean key = false;
-        if (name.equals(term)) {
+        if (name.contains(term)) {
             key = true;
         }
         return key;
