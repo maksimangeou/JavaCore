@@ -37,10 +37,12 @@ public class SearchEngine {
     public void search(String term) {
         int count = 0;
         for (int i = 0; i < searchItem.length; i++) {
-            if (searchItem[i].searchTerm(term) != null) {
+            if (searchItem[i] != null && !searchItem[i].searchTerm(term).equals(Searchable.CODE_NULL)) {
                 count++;
                 System.out.println(searchItem[i].getStringRepresentation(term) + '\n');
                 if (count >= 5) {
+                    break;
+                } else if (searchItem[i].searchTerm(term) == null) {
                     break;
                 }
             }

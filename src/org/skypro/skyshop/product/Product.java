@@ -3,7 +3,6 @@ package org.skypro.skyshop.product;
 public abstract class Product implements Searchable {
 
     private String name;
-    private static final String CODE_NULL = "non";
 
     public Product(String name) {
         this.name = name;

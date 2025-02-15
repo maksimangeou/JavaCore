@@ -5,8 +5,6 @@ import org.skypro.skyshop.product.*;
 import org.skypro.skyshop.article.Article;
 import org.skypro.skyshop.searche.SearchEngine;
 
-import java.util.Arrays;
-
 public class App {
     public static void main(String[] args) {
         SearchEngine searchEngine = new SearchEngine(10);
@@ -22,7 +20,7 @@ public class App {
         Product chocolate = new DiscountedProduct("шоколад", 39.99, 20);
 
         Article article1 = new Article("Польза апельсинов", "Текст номер 1");
-        Article article2 = new Article("Садоводы и огородники","Текст содержит в себе огурцы и помидоры");
+        Article article2 = new Article("Садоводы и огородники", "Текст содержит в себе огурцы и помидоры");
         Article article3 = new Article("Молоко", "Лактоза - враг здоровью человека");
 
         System.out.println();
@@ -36,9 +34,13 @@ public class App {
         System.out.println();
 
         System.out.println("Поиск по ключевому слову");
+        System.out.println("-апельсин");
         searchEngine.search("апельсин");
+        System.out.println("-огородник");
         searchEngine.search("огородник");
+        System.out.println("-огурцы");
         searchEngine.search("огурцы");
+        System.out.println("-Лактоза");
         searchEngine.search("Лактоза");
 
 
