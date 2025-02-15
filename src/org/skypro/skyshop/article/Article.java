@@ -5,6 +5,7 @@ import org.skypro.skyshop.product.Searchable;
 public final class Article implements Searchable {
     private String title;
     private String text;
+    private static final String CODE_NULL = "non";
 
     public Article(String title, String text) {
         this.title = title;
