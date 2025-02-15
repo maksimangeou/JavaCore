@@ -56,8 +56,8 @@ public class ProductBasket {
         return key;
     }
 
-    public int getPriceBasket() {
-        int price = 0;
+    public double getPriceBasket() {
+        double price = 0;
         for (Product value : basket) {
             if (value != null) {
                 price += value.getPrice();
@@ -71,20 +71,23 @@ public class ProductBasket {
     }
 
     public void showBasket() {
+        int count = 0;
         if (isBasketEmpty()) {
             System.out.println("В корзине пусто");
         } else {
             for (Product value : basket) {
-                if (value != null) {
+                if (value != null && value.isSpecial()) {
+                    System.out.println(value);
+                    count++;
+                } else if (value != null) {
                     System.out.println(value);
                 }
             }
         }
-        System.out.println("Итого: " + getPriceBasket());
+        System.out.println("Итого: " + getPriceBasket() + '\n' + "Специальных товаров: " + count);
     }
 
     public boolean isProductNameInBasket(String name) {
-        boolean key = false;
         for (Product value : basket) {
             if (value.getName().equals(name)) {
                 return true;
