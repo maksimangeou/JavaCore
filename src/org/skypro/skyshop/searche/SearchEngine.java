@@ -27,6 +27,7 @@ public class SearchEngine {
         }
         return false;
     }
+
     public void add(Searchable searchable) {
         if (isEmptyPlace()) {
             searchItem[index] = searchable;
@@ -35,11 +36,11 @@ public class SearchEngine {
 
     public void search(String term) {
         int count = 0;
-        for (Searchable value: searchItem) {
-            if (value.searchTerm(term) != null) {
+        for (int i = 0; i < searchItem.length; i++) {
+            if (searchItem[i].searchTerm(term) != null) {
                 count++;
-                System.out.println(value.getStringRepresentation(term)+'\n');
-                if (count == 5 || count < searchItem.length) {
+                System.out.println(searchItem[i].getStringRepresentation(term) + '\n');
+                if (count >= 5) {
                     break;
                 }
             }

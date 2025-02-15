@@ -13,6 +13,7 @@ public class App {
 
         ProductBasket productBasket = new ProductBasket();
 
+        System.out.println("Создание товаров и статей");
         Product orange = new SimpleProduct("апельсины", 100);
         Product cucumber = new SimpleProduct("огурцы", 199);
         Product tomato = new DiscountedProduct("помидоры", 200, 20);
@@ -24,11 +25,17 @@ public class App {
         Article article2 = new Article("Садоводы и огородники","Текст содержит в себе огурцы и помидоры");
         Article article3 = new Article("Молоко", "Лактоза - враг здоровью человека");
 
+        System.out.println();
+
+        System.out.println("Добавление позиций в массив поиска");
         searchEngine.add(orange);
+        searchEngine.add(article1);
         searchEngine.add(article2);
         searchEngine.add(cucumber);
         searchEngine.add(article3);
+        System.out.println();
 
+        System.out.println("Поиск по ключевому слову");
         searchEngine.search("апельсин");
         searchEngine.search("огородник");
         searchEngine.search("огурцы");
