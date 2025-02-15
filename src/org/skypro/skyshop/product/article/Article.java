@@ -1,6 +1,6 @@
-package org.skypro.skyshop.article;
+package org.skypro.skyshop.product.article;
 
-import org.skypro.skyshop.product.Searchable;
+import org.skypro.skyshop.product.searchable.Searchable;
 
 public final class Article implements Searchable {
     private String title;
@@ -33,17 +33,8 @@ public final class Article implements Searchable {
     }
 
     @Override
-    public boolean isContentTerm(String term) {
-        boolean key = false;
-        if (title.contains(term) || text.contains(term)) {
-            key = true;
-        }
-        return key;
-    }
-
-    @Override
     public String searchTerm(String term) {
-        if (isContentTerm(term)) {
+        if (title.contains(term) || text.contains(term)) {
             return toString();
         }
         return CODE_NULL;

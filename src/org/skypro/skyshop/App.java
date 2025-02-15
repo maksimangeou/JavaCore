@@ -2,7 +2,7 @@ package org.skypro.skyshop;
 
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.*;
-import org.skypro.skyshop.article.Article;
+import org.skypro.skyshop.product.article.Article;
 import org.skypro.skyshop.searche.SearchEngine;
 
 public class App {
@@ -21,7 +21,12 @@ public class App {
 
         Article article1 = new Article("Польза апельсинов", "Текст номер 1");
         Article article2 = new Article("Садоводы и огородники", "Текст содержит в себе огурцы и помидоры");
-        Article article3 = new Article("Молоко", "Лактоза - враг здоровью человека");
+        Article article3 = new Article("Молоко1", "Лактоза1 - враг здоровью человека");
+        Article article4 = new Article("Молоко2", "Лактоза2 - враг здоровью человека");
+        Article article5 = new Article("Молоко3", "Лактоза3 - враг здоровью человека");
+        Article article6 = new Article("Молоко4", "Лактоза4 - враг здоровью человека");
+        Article article7 = new Article("Молоко5", "Лактоза5 - враг здоровью человека");
+        Article article8 = new Article("Молоко6", "Лактоза6 - враг здоровью человека"); //чтобы проверить вывод не более 5 результатов
 
         System.out.println();
 
@@ -31,6 +36,11 @@ public class App {
         searchEngine.add(article2);
         searchEngine.add(tomato);
         searchEngine.add(article3);
+        searchEngine.add(article4);
+        searchEngine.add(article5);
+        searchEngine.add(article6);
+        searchEngine.add(article7);
+        searchEngine.add(article8);
         System.out.println();
 
         System.out.println("Поиск по ключевому слову");

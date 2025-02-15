@@ -1,5 +1,7 @@
 package org.skypro.skyshop.product;
 
+import org.skypro.skyshop.product.searchable.Searchable;
+
 public abstract class Product implements Searchable {
 
     private String name;
@@ -26,17 +28,8 @@ public abstract class Product implements Searchable {
     }
 
     @Override
-    public boolean isContentTerm(String term) {
-        boolean key = false;
-        if (name.contains(term)) {
-            key = true;
-        }
-        return key;
-    }
-
-    @Override
     public String searchTerm(String term) {
-        if (isContentTerm(term)) {
+        if (name.contains(term)) {
             return name;
         }
         return CODE_NULL;

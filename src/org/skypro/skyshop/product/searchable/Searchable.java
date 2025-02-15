@@ -1,10 +1,8 @@
-package org.skypro.skyshop.product;
+package org.skypro.skyshop.product.searchable;
 
 public interface Searchable {
 
     String CODE_NULL = "non";
-
-    boolean isContentTerm(String term);
 
     String searchTerm(String term);
 

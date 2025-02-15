@@ -1,6 +1,6 @@
 package org.skypro.skyshop.searche;
 
-import org.skypro.skyshop.product.Searchable;
+import org.skypro.skyshop.product.searchable.Searchable;
 
 public class SearchEngine {
     private Searchable[] searchItem;
@@ -34,10 +34,17 @@ public class SearchEngine {
         }
     }
 
+    public boolean isSearched(String term, int index) {
+        if (searchItem[index].searchTerm(term).equals(Searchable.CODE_NULL)) {
+            return false;
+        }
+        return true;
+    }
+
     public void search(String term) {
         int count = 0;
         for (int i = 0; i < searchItem.length; i++) {
-            if (searchItem[i] != null && !searchItem[i].searchTerm(term).equals(Searchable.CODE_NULL)) {
+            if (searchItem[i] != null && isSearched(term, i)) {
                 count++;
                 System.out.println(searchItem[i].getStringRepresentation(term) + '\n');
                 if (count >= 5) {
