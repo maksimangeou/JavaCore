@@ -26,8 +26,17 @@ public abstract class Product implements Searchable {
     }
 
     @Override
-    public String searchTerm(String term) {
+    public boolean isContentTerm(String term) {
+        boolean key = false;
         if (name.equals(term)) {
+            key = true;
+        }
+        return key;
+    }
+
+    @Override
+    public String searchTerm(String term) {
+        if (isContentTerm(term)) {
             return name;
         }
         return null;
@@ -35,6 +44,6 @@ public abstract class Product implements Searchable {
 
     @Override
     public String getSearchedTitle() {
-        return "Product";
+        return "PRODUCT";
     }
 }

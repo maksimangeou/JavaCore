@@ -10,4 +10,17 @@ public final class Article implements Searchable {
     public String toString() {
         return title + '\n' + text;
     }
+
+    @Override
+    public String searchTerm(String term) {
+        if (title.equals(term) || text.equals(term)) {
+            return toString();
+        }
+        return null;
+    }
+
+    @Override
+    public String getSearchedTitle() {
+        return "ARTICLE";
+    }
 }
