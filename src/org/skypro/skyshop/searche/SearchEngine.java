@@ -20,7 +20,7 @@ public class SearchEngine {
 
     public boolean isEmptyPlace() {
         for (int i = 0; i < searchItem.length; i++) {
-            if (searchItem[i] != null) {
+            if (searchItem[i] == null) {
                 index = i;
                 return true;
             }
@@ -33,17 +33,16 @@ public class SearchEngine {
         }
     }
 
-    public Searchable search(String term, Searchable searchable) {
+    public void search(String term) {
         int count = 0;
         for (Searchable value: searchItem) {
-            if (searchable.searchTerm(term) != null) {
-                add(searchable);
+            if (value.searchTerm(term) != null) {
                 count++;
+                System.out.println(value.getStringRepresentation(term)+'\n');
                 if (count == 5 || count < searchItem.length) {
                     break;
                 }
             }
         }
-        return searchable;
     }
 }
