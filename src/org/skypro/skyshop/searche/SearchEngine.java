@@ -35,24 +35,29 @@ public class SearchEngine {
     }
 
     public boolean isSearched(String term, int index) {
-        if (searchItem[index].searchTerm(term).equals(Searchable.CODE_NULL)) {
-            return false;
+        boolean key = true;
+        if (searchItem[index] == null) {
+            key = false;
         }
-        return true;
+        if (searchItem[index].searchTerm(term).equals(Searchable.CODE_NULL)) {
+            key = false;
+        }
+        return key;
     }
 
     public void search(String term) {
         int count = 0;
         for (int i = 0; i < searchItem.length; i++) {
-            if (searchItem[i] != null && isSearched(term, i)) {
+            if (isSearched(term, i)) {
                 count++;
                 System.out.println(searchItem[i].getStringRepresentation(term) + '\n');
-                if (count >= 5) {
-                    break;
-                } else if (searchItem[i].searchTerm(term) == null) {
-                    break;
-                }
+            } else {
+                continue;
+            }
+            if (count >= 5) {
+                break;
             }
         }
     }
 }
+
