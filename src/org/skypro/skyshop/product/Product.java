@@ -40,7 +40,7 @@ public abstract class Product implements Searchable {
         if (isContentTerm(term)) {
             return name;
         }
-        return null;
+        return CODE_NULL;
     }
 
     @Override

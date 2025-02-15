@@ -31,7 +31,7 @@ public final class Article implements Searchable {
         if (isContentTerm(term)) {
             return toString();
         }
-        return null;
+        return CODE_NULL;
     }
 
     @Override
