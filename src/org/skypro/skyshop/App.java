@@ -7,7 +7,7 @@ import org.skypro.skyshop.searche.SearchEngine;
 
 public class App {
     public static void main(String[] args) {
-        SearchEngine searchEngine = new SearchEngine(10);
+        SearchEngine searchEngine = new SearchEngine(20);
 
         ProductBasket productBasket = new ProductBasket();
 
@@ -27,7 +27,7 @@ public class App {
         Article article6 = new Article("Молоко4", "Лактоза4 - враг здоровью человека");
         Article article7 = new Article("Молоко5", "Лактоза5 - враг здоровью человека");
         Article article8 = new Article("Молоко6", "Лактоза6 - враг здоровью человека"); //чтобы проверить вывод не более 5 результатов
-
+        Article article9 = new Article("Еще одна статья об апельсинах", "Текст два");
         System.out.println();
 
         System.out.println("Добавление позиций в массив поиска");
@@ -41,6 +41,7 @@ public class App {
         searchEngine.add(article6);
         searchEngine.add(article7);
         searchEngine.add(article8);
+        searchEngine.add(article9);
         System.out.println();
 
         System.out.println("Поиск по ключевому слову");

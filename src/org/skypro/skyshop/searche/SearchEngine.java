@@ -38,8 +38,7 @@ public class SearchEngine {
         boolean key = true;
         if (searchItem[index] == null) {
             key = false;
-        }
-        if (searchItem[index].searchTerm(term).equals(Searchable.CODE_NULL)) {
+        } else if (searchItem[index].searchTerm(term).equals(Searchable.CODE_NULL)) {
             key = false;
         }
         return key;
