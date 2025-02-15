@@ -29,7 +29,7 @@ public class App {
         searchEngine.add(orange);
         searchEngine.add(article1);
         searchEngine.add(article2);
-        searchEngine.add(cucumber);
+        searchEngine.add(tomato);
         searchEngine.add(article3);
         System.out.println();
 
@@ -38,8 +38,8 @@ public class App {
         searchEngine.search("апельсин");
         System.out.println("-огородник");
         searchEngine.search("огородник");
-        System.out.println("-огурцы");
-        searchEngine.search("огурцы");
+        System.out.println("-помидоры");
+        searchEngine.search("помидоры");
         System.out.println("-Лактоза");
         searchEngine.search("Лактоза");
 
