@@ -2,16 +2,16 @@ package org.skypro.skyshop.product;
 
 public class DiscountedProduct extends Product {
 
-    private int priceBase;
+    private double priceBase;
     private int discountPercent;
 
-    public DiscountedProduct(String name, int priceBase, int discountPercent) {
+    public DiscountedProduct(String name, double priceBase, int discountPercent) {
         super(name);
         this.priceBase = priceBase;
         this.discountPercent = discountPercent;
     }
 
-    public int getPriceBase() {
+    public double getPriceBase() {
         return priceBase;
     }
 
@@ -19,7 +19,7 @@ public class DiscountedProduct extends Product {
         return discountPercent;
     }
 
-    public void setPriceBase(int priceBase) {
+    public void setPriceBase(double priceBase) {
         this.priceBase = priceBase;
     }
 
