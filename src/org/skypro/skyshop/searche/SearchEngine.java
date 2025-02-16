@@ -4,7 +4,6 @@ import org.skypro.skyshop.product.searchable.Searchable;
 
 public class SearchEngine {
     private Searchable[] searchItem;
-    private static int index;
 
     public SearchEngine(int size) {
         this.searchItem = new Searchable[size];
@@ -18,19 +17,20 @@ public class SearchEngine {
         this.searchItem = searchItem;
     }
 
-    public boolean isEmptyPlace() {
+    public int isEmptyPlaceIndex() {
         for (int i = 0; i < searchItem.length; i++) {
             if (searchItem[i] == null) {
-                index = i;
-                return true;
+                return i;
             }
         }
-        return false;
+        return -1;
     }
 
     public void add(Searchable searchable) {
-        if (isEmptyPlace()) {
-            searchItem[index] = searchable;
+        if (isEmptyPlaceIndex() != -1) {
+            searchItem[isEmptyPlaceIndex()] = searchable;
+        } else {
+            System.out.println("Нет места для добавления");
         }
     }
 
