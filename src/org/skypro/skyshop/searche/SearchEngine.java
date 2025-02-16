@@ -17,7 +17,7 @@ public class SearchEngine {
         this.searchItem = searchItem;
     }
 
-    public int isEmptyPlaceIndex() {
+    public int getEmptyPlaceIndex() {
         for (int i = 0; i < searchItem.length; i++) {
             if (searchItem[i] == null) {
                 return i;
@@ -27,8 +27,8 @@ public class SearchEngine {
     }
 
     public void add(Searchable searchable) {
-        if (isEmptyPlaceIndex() != -1) {
-            searchItem[isEmptyPlaceIndex()] = searchable;
+        if (getEmptyPlaceIndex() != -1) {
+            searchItem[getEmptyPlaceIndex()] = searchable;
         } else {
             System.out.println("Нет места для добавления");
         }
