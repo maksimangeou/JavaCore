@@ -88,7 +88,7 @@ public class SearchEngine {
         Searchable searchable = searchMaxQualityTerm(search);
         try {
             if (searchable == null) {
-                throw new BestResultNotFound();
+                throw new BestResultNotFound(search);
             }
             System.out.println(searchable);
         } catch (BestResultNotFound e) {
