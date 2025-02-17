@@ -9,7 +9,7 @@ public class DiscountedProduct extends Product {
         super(name);
         try {
             if (priceBase <= 0) {
-                throw new IllegalArgumentException("");
+                throw new IllegalArgumentException();
             }
             this.priceBase = priceBase;
         } catch (IllegalArgumentException e) {
