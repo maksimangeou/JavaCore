@@ -11,8 +11,21 @@ public class App {
 
         ProductBasket productBasket = new ProductBasket();
 
+        System.out.println("Демонстрация ошибок");
+        System.out.println("NULL в имени");
+        Product productNullInName = new SimpleProduct(null, 100);
+        System.out.println("Пробелы в имени");
+        Product productNameOfSpaces = new SimpleProduct("   ", 100);
+        System.out.println("Нулевая цена");
+        Product productZeroPrice = new SimpleProduct("milk", 0);
+        System.out.println("Скидка более 100%");
+        Product productDiscountOverHundredPercent = new DiscountedProduct("vine", 500, 120);
+        System.out.println("Скидка менее 0%");
+        Product productDiscountLessZeroPercent = new DiscountedProduct("juice", 500, -5);
+        System.out.println();
+
         System.out.println("Создание товаров и статей");
-        Product orange = new SimpleProduct("апельсины", 100);
+        Product orange = new SimpleProduct("апельсин", 100);
         Product cucumber = new SimpleProduct("огурцы", 199);
         Product tomato = new DiscountedProduct("помидоры", 200, 20);
         Product banana = new DiscountedProduct("бананы", 249, 30);
