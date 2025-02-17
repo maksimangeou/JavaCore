@@ -69,8 +69,10 @@ public class App {
         System.out.println();
 
         System.out.println("Поиск по ключевому слову максимальное кол-во повторений");
+        System.out.println("-апельсины");
         searchEngine.showSearchMaxQualityTerm("апельсин");
         System.out.println();
+        System.out.println("-яблоки");
         searchEngine.showSearchMaxQualityTerm("яблоки");
         System.out.println();
 

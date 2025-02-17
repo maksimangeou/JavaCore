@@ -1,6 +1,6 @@
 package org.skypro.skyshop.exception;
 
-public class BestResultNotFound extends Exception{
+public class BestResultNotFound extends Exception {
 
     String search;
 
