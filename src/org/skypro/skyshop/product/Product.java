@@ -8,11 +8,10 @@ public abstract class Product implements Searchable {
 
     public Product(String name) {
         try {
-            if (!name.isBlank()) {
-                this.name = name;
-            } else {
+            if (name.isBlank()) {
                 throw new IllegalArgumentException();
             }
+            this.name = name;
         } catch (IllegalArgumentException e) {
             System.out.println("Название состоит из пробелов");
         } catch (NullPointerException e) {

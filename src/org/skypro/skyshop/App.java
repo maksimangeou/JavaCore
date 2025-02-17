@@ -32,11 +32,11 @@ public class App {
         Product milk = new FixPriceProduct("молоко");
         Product chocolate = new DiscountedProduct("шоколад", 39.99, 20);
 
-        Article article1 = new Article("Польза апельсинов", "Текст номер 1");
+        Article article1 = new Article("Польза апельсинов", "Текст номер 1 про апельсины");
         Article article2 = new Article("Садоводы и огородники", "Текст содержит в себе огурцы и помидоры");
         Article article3 = new Article("Молоко1", "Лактоза1 - враг здоровью человека");
         Article article4 = new Article("Молоко2", "Лактоза2 - враг здоровью человека");
-        Article article5 = new Article("Молоко3", "Лактоза3 - враг здоровью человека");
+        Article article5 = new Article("Молоко3", "Лактоза3, Молоко - враг здоровью человека");
         Article article6 = new Article("Молоко4", "Лактоза4 - враг здоровью человека");
         Article article7 = new Article("Молоко5", "Лактоза5 - враг здоровью человека");
         Article article8 = new Article("Молоко6", "Лактоза6 - враг здоровью человека"); //чтобы проверить вывод не более 5 результатов
@@ -66,6 +66,13 @@ public class App {
         searchEngine.search("помидоры");
         System.out.println("-Лактоза");
         searchEngine.search("Лактоза");
+        System.out.println();
+
+        System.out.println("Поиск по ключевому слову максимальное кол-во повторений");
+        searchEngine.showSearchMaxQualityTerm("апельсин");
+        System.out.println();
+        searchEngine.showSearchMaxQualityTerm("яблоки");
+        System.out.println();
 
 
         System.out.println("Добавление продуктов в корзину");
