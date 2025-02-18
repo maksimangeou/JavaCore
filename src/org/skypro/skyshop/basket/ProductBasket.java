@@ -2,47 +2,28 @@ package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.product.Product;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
 public class ProductBasket {
 
-    private Product[] basket;
-    private static int index = 0;
+    private List<Product> basket;
 
     public ProductBasket() {
-        basket = new Product[5];
+        basket = new LinkedList<>();
     }
 
-    public Product[] getBasket() {
+    public List<Product> getBasket() {
         return basket;
     }
 
-    public void setBasket(Product[] basket) {
+    public void setBasket(List<Product> basket) {
         this.basket = basket;
     }
 
-    public static int getIndex() {
-        return index;
-    }
-
-    public static void setIndex(int index) {
-        ProductBasket.index = index;
-    }
-
     public void addProductIntoBasket(Product product) {
-        if (isIndexEmpty()) {
-            basket[index] = product;
-        } else {
-            System.out.println("Невозможно добавить продукт");
-        }
-    }
-
-    public boolean isIndexEmpty() {
-        for (int i = 0; i < basket.length; i++) {
-            if (basket[i] == null) {
-                index = i;
-                return true;
-            }
-        }
-        return false;
+        basket.add(product);
     }
 
     public boolean isBasketEmpty() {
@@ -108,13 +89,13 @@ public class ProductBasket {
     }
 
     public void cleanBasket() {
+        Iterator<Product> itrBasket = basket.iterator();
         if (isBasketEmpty()) {
             System.out.println("В корзине пусто");
         } else {
-            for (int i = 0; i < basket.length; i++) {
-                if (basket[i] != null) {
-                    basket[i] = null;
-                }
+            while (itrBasket.hasNext()) {
+                Product basketNext = itrBasket.next();
+                itrBasket.remove();
             }
             System.out.println("Корзина очищена");
         }

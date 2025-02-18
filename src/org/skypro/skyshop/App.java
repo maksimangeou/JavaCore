@@ -83,9 +83,6 @@ public class App {
         productBasket.addProductIntoBasket(tomato);
         productBasket.addProductIntoBasket(banana);
         productBasket.addProductIntoBasket(milk);
-        System.out.println();
-
-        System.out.println("Добавление продукта в заполненную корзину");
         productBasket.addProductIntoBasket(chocolate);
         System.out.println();
 
