@@ -7,7 +7,16 @@ public abstract class Product implements Searchable {
     private String name;
 
     public Product(String name) {
-        this.name = name;
+        try {
+            if (name.isBlank()) {
+                throw new IllegalArgumentException();
+            }
+            this.name = name;
+        } catch (IllegalArgumentException e) {
+            System.out.println("Название состоит из пробелов");
+        } catch (NullPointerException e) {
+            System.out.println("Пустое значение в аргументе");
+        }
     }
 
     public abstract double getPrice();

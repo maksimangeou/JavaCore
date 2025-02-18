@@ -11,19 +11,32 @@ public class App {
 
         ProductBasket productBasket = new ProductBasket();
 
+        System.out.println("Демонстрация ошибок");
+        System.out.println("NULL в имени");
+        Product productNullInName = new SimpleProduct(null, 100);
+        System.out.println("Пробелы в имени");
+        Product productNameOfSpaces = new SimpleProduct("   ", 100);
+        System.out.println("Нулевая цена");
+        Product productZeroPrice = new SimpleProduct("milk", 0);
+        System.out.println("Скидка более 100%");
+        Product productDiscountOverHundredPercent = new DiscountedProduct("vine", 500, 120);
+        System.out.println("Скидка менее 0%");
+        Product productDiscountLessZeroPercent = new DiscountedProduct("juice", 500, -5);
+        System.out.println();
+
         System.out.println("Создание товаров и статей");
-        Product orange = new SimpleProduct("апельсины", 100);
+        Product orange = new SimpleProduct("апельсин", 100);
         Product cucumber = new SimpleProduct("огурцы", 199);
         Product tomato = new DiscountedProduct("помидоры", 200, 20);
         Product banana = new DiscountedProduct("бананы", 249, 30);
         Product milk = new FixPriceProduct("молоко");
         Product chocolate = new DiscountedProduct("шоколад", 39.99, 20);
 
-        Article article1 = new Article("Польза апельсинов", "Текст номер 1");
+        Article article1 = new Article("Польза апельсинов", "Текст номер 1 про апельсины");
         Article article2 = new Article("Садоводы и огородники", "Текст содержит в себе огурцы и помидоры");
         Article article3 = new Article("Молоко1", "Лактоза1 - враг здоровью человека");
         Article article4 = new Article("Молоко2", "Лактоза2 - враг здоровью человека");
-        Article article5 = new Article("Молоко3", "Лактоза3 - враг здоровью человека");
+        Article article5 = new Article("Молоко3", "Лактоза3, Молоко - враг здоровью человека");
         Article article6 = new Article("Молоко4", "Лактоза4 - враг здоровью человека");
         Article article7 = new Article("Молоко5", "Лактоза5 - враг здоровью человека");
         Article article8 = new Article("Молоко6", "Лактоза6 - враг здоровью человека"); //чтобы проверить вывод не более 5 результатов
@@ -53,6 +66,15 @@ public class App {
         searchEngine.search("помидоры");
         System.out.println("-Лактоза");
         searchEngine.search("Лактоза");
+        System.out.println();
+
+        System.out.println("Поиск по ключевому слову максимальное кол-во повторений");
+        System.out.println("-апельсины");
+        searchEngine.showSearchMaxQualityTerm("апельсин");
+        System.out.println();
+        System.out.println("-яблоки");
+        searchEngine.showSearchMaxQualityTerm("яблоки");
+        System.out.println();
 
 
         System.out.println("Добавление продуктов в корзину");
