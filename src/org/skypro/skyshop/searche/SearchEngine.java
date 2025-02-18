@@ -3,7 +3,6 @@ package org.skypro.skyshop.searche;
 import org.skypro.skyshop.exception.BestResultNotFound;
 import org.skypro.skyshop.product.searchable.Searchable;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -26,18 +25,18 @@ public class SearchEngine {
         searchItem.add(searchable);
     }
 
-    public boolean isSearched(String term, Searchable nextSearchItem) {
+    public boolean isSearched(String term, Searchable searchItem) {
         boolean key = true;
-        if (nextSearchItem.searchTerm(term).equals(Searchable.CODE_NULL)) {
+        if (searchItem.searchTerm(term).equals(Searchable.CODE_NULL)) {
             key = false;
         }
         return key;
     }
 
     public void search(String term) {
-        for (Searchable nextSearchItem : searchItem) {
-            if (isSearched(term, nextSearchItem)) {
-                System.out.println(nextSearchItem.getStringRepresentation(term) + '\n');
+        for (Searchable searchItem : searchItem) {
+            if (isSearched(term, searchItem)) {
+                System.out.println(searchItem.getStringRepresentation(term) + '\n');
             }
         }
     }
@@ -47,34 +46,34 @@ public class SearchEngine {
         int quality = 0;
         int qualityTemp = 0;
         int index = 0;
-        for (int i = 0; i < searchItem.length; i++) {
-            if (searchItem[i] != null && isSearched(search, i)) {
-                int indexSearch = searchItem[i].getStringRepresentation(search).indexOf(search, index);
+        for (Searchable searchItem: searchItem) {
+            if (searchItem != null && isSearched(search, searchItem)) {
+                int indexSearch = searchItem.getStringRepresentation(search).indexOf(search, index);
                 while (indexSearch != -1) {
                     quality++;
                     index = indexSearch + search.length();
-                    indexSearch = searchItem[i].getStringRepresentation(search).indexOf(search, index);
+                    indexSearch = searchItem.getStringRepresentation(search).indexOf(search, index);
                 }
 
                 if (qualityTemp < quality) {
                     qualityTemp = quality;
-                    searchable = searchItem[i];
+                    searchable = searchItem;
                 }
             }
         }
         return searchable;
     }
-//
-//    public void showSearchMaxQualityTerm(String search) {
-//        Searchable searchable = searchMaxQualityTerm(search);
-//        try {
-//            if (searchable == null) {
-//                throw new BestResultNotFound(search);
-//            }
-//            System.out.println(searchable);
-//        } catch (BestResultNotFound e) {
-//            System.out.println(e);
-//        }
-//    }
+
+    public void showSearchMaxQualityTerm(String search) {
+        Searchable searchable = searchMaxQualityTerm(search);
+        try {
+            if (searchable == null) {
+                throw new BestResultNotFound(search);
+            }
+            System.out.println(searchable);
+        } catch (BestResultNotFound e) {
+            System.out.println(e);
+        }
+    }
 }
 

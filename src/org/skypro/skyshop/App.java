@@ -71,10 +71,10 @@ public class App {
 
         System.out.println("Поиск по ключевому слову максимальное кол-во повторений");
         System.out.println("-апельсины");
-//        searchEngine.showSearchMaxQualityTerm("апельсин");
+        searchEngine.showSearchMaxQualityTerm("апельсин");
         System.out.println();
         System.out.println("-яблоки");
-//        searchEngine.showSearchMaxQualityTerm("яблоки");
+        searchEngine.showSearchMaxQualityTerm("яблоки");
         System.out.println();
 
 
@@ -105,6 +105,7 @@ public class App {
 
         System.out.println("Удаление продукта по ключевому слову");
         productBasket.removeProductFromBasket("апельсин");
+        System.out.println();
         productBasket.showBasket();
         System.out.println();
 
