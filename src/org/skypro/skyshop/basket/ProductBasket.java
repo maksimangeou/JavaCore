@@ -26,17 +26,6 @@ public class ProductBasket {
         basket.add(product);
     }
 
-    public boolean isBasketEmpty() {
-        boolean key = false;
-        for (Product value : basket) {
-            if (value == null) {
-                key = true;
-                break;
-            }
-        }
-        return key;
-    }
-
     public double getPriceBasket() {
         double price = 0;
         for (Product value : basket) {
@@ -53,7 +42,7 @@ public class ProductBasket {
 
     public void showBasket() {
         int count = 0;
-        if (isBasketEmpty()) {
+        if (basket.isEmpty()) {
             System.out.println("В корзине пусто");
         } else {
             for (Product value : basket) {
@@ -78,7 +67,7 @@ public class ProductBasket {
     }
 
     public void searchProductInBasket(Product product) {
-        if (isBasketEmpty()) {
+        if (basket.isEmpty()) {
             System.out.println("В корзине пусто \n" +
                     "Продукт " + product.getName() + " не найден");
         } else if (isProductNameInBasket(product.getName())) {
@@ -90,14 +79,27 @@ public class ProductBasket {
 
     public void cleanBasket() {
         Iterator<Product> itrBasket = basket.iterator();
-        if (isBasketEmpty()) {
+        if (basket.isEmpty()) {
             System.out.println("В корзине пусто");
         } else {
             while (itrBasket.hasNext()) {
-                Product basketNext = itrBasket.next();
+                itrBasket.next();
                 itrBasket.remove();
             }
             System.out.println("Корзина очищена");
+        }
+    }
+
+    public void removeProductFromBasket(String name) {
+        Iterator<Product> itrBasket = basket.iterator();
+        if (basket.isEmpty()) {
+            System.out.println("В корзине пусто");
+        } else {
+            Product nextPlaceBasket = itrBasket.next();
+            if (nextPlaceBasket.getName().equals(name)) {
+                itrBasket.remove();
+                System.out.println("Продукт '" + name + "'удален");
+            }
         }
     }
 }

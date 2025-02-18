@@ -7,7 +7,7 @@ import org.skypro.skyshop.searche.SearchEngine;
 
 public class App {
     public static void main(String[] args) {
-        SearchEngine searchEngine = new SearchEngine(20);
+        SearchEngine searchEngine = new SearchEngine();
 
         ProductBasket productBasket = new ProductBasket();
 
@@ -31,6 +31,7 @@ public class App {
         Product banana = new DiscountedProduct("бананы", 249, 30);
         Product milk = new FixPriceProduct("молоко");
         Product chocolate = new DiscountedProduct("шоколад", 39.99, 20);
+        Product potato = new DiscountedProduct("картофель", 59.99, 5);
 
         Article article1 = new Article("Польза апельсинов", "Текст номер 1 про апельсины");
         Article article2 = new Article("Садоводы и огородники", "Текст содержит в себе огурцы и помидоры");
@@ -70,10 +71,10 @@ public class App {
 
         System.out.println("Поиск по ключевому слову максимальное кол-во повторений");
         System.out.println("-апельсины");
-        searchEngine.showSearchMaxQualityTerm("апельсин");
+//        searchEngine.showSearchMaxQualityTerm("апельсин");
         System.out.println();
         System.out.println("-яблоки");
-        searchEngine.showSearchMaxQualityTerm("яблоки");
+//        searchEngine.showSearchMaxQualityTerm("яблоки");
         System.out.println();
 
 
@@ -99,7 +100,12 @@ public class App {
         System.out.println();
 
         System.out.println("Поиск товара, которого нет в корзине");
-        productBasket.searchProductInBasket(chocolate);
+        productBasket.searchProductInBasket(potato);
+        System.out.println();
+
+        System.out.println("Удаление продукта по ключевому слову");
+        productBasket.removeProductFromBasket("апельсин");
+        productBasket.showBasket();
         System.out.println();
 
         System.out.println("Очистка корзины");

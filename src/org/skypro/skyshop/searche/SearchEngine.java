@@ -3,60 +3,41 @@ package org.skypro.skyshop.searche;
 import org.skypro.skyshop.exception.BestResultNotFound;
 import org.skypro.skyshop.product.searchable.Searchable;
 
-public class SearchEngine {
-    private Searchable[] searchItem;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
-    public SearchEngine(int size) {
-        this.searchItem = new Searchable[size];
+public class SearchEngine {
+    private List<Searchable> searchItem;
+
+    public SearchEngine() {
+        this.searchItem = new LinkedList<>();
     }
 
-    public Searchable[] getSearchItem() {
+    public List<Searchable> getSearchItem() {
         return searchItem;
     }
 
-    public void setSearchItem(Searchable[] searchItem) {
+    public void setSearchItem(LinkedList<Searchable> searchItem) {
         this.searchItem = searchItem;
     }
 
-    public int getEmptyPlaceIndex() {
-        for (int i = 0; i < searchItem.length; i++) {
-            if (searchItem[i] == null) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
     public void add(Searchable searchable) {
-        int index = getEmptyPlaceIndex();
-        if (index != -1) {
-            searchItem[index] = searchable;
-        } else {
-            System.out.println("Нет места для добавления");
-        }
+        searchItem.add(searchable);
     }
 
-    public boolean isSearched(String term, int index) {
+    public boolean isSearched(String term, Searchable nextSearchItem) {
         boolean key = true;
-        if (searchItem[index] == null) {
-            key = false;
-        } else if (searchItem[index].searchTerm(term).equals(Searchable.CODE_NULL)) {
+        if (nextSearchItem.searchTerm(term).equals(Searchable.CODE_NULL)) {
             key = false;
         }
         return key;
     }
 
     public void search(String term) {
-        int count = 0;
-        for (int i = 0; i < searchItem.length; i++) {
-            if (isSearched(term, i)) {
-                count++;
-                System.out.println(searchItem[i].getStringRepresentation(term) + '\n');
-            } else {
-                continue;
-            }
-            if (count >= 5) {
-                break;
+        for (Searchable nextSearchItem : searchItem) {
+            if (isSearched(term, nextSearchItem)) {
+                System.out.println(nextSearchItem.getStringRepresentation(term) + '\n');
             }
         }
     }
@@ -83,17 +64,17 @@ public class SearchEngine {
         }
         return searchable;
     }
-
-    public void showSearchMaxQualityTerm(String search) {
-        Searchable searchable = searchMaxQualityTerm(search);
-        try {
-            if (searchable == null) {
-                throw new BestResultNotFound(search);
-            }
-            System.out.println(searchable);
-        } catch (BestResultNotFound e) {
-            System.out.println(e);
-        }
-    }
+//
+//    public void showSearchMaxQualityTerm(String search) {
+//        Searchable searchable = searchMaxQualityTerm(search);
+//        try {
+//            if (searchable == null) {
+//                throw new BestResultNotFound(search);
+//            }
+//            System.out.println(searchable);
+//        } catch (BestResultNotFound e) {
+//            System.out.println(e);
+//        }
+//    }
 }
 
