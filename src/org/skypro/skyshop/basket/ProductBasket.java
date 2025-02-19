@@ -78,28 +78,43 @@ public class ProductBasket {
     }
 
     public void cleanBasket() {
-        Iterator<Product> itrBasket = basket.iterator();
         if (basket.isEmpty()) {
             System.out.println("В корзине пусто");
         } else {
-            while (itrBasket.hasNext()) {
-                itrBasket.next();
-                itrBasket.remove();
-            }
+            basket.clear();
             System.out.println("Корзина очищена");
         }
     }
 
-    public void removeProductFromBasket(String name) {
+    public List<Product> removeProductFromBasket(String name) {
+        List<Product> listRemove = new LinkedList<>();
         Iterator<Product> itrBasket = basket.iterator();
         if (basket.isEmpty()) {
-            System.out.println("В корзине пусто");
+            listRemove = null;
         } else {
-            Product nextPlaceBasket = itrBasket.next();
-            if (nextPlaceBasket.getName().equals(name)) {
-                itrBasket.remove();
-                System.out.println("Продукт '" + name + "'удален");
+            for (int i = 0; i < basket.size(); i++) {
+                Product nextPlaceBasket = itrBasket.next();
+                if (nextPlaceBasket.getName().equals(name)) {
+                    listRemove.add(nextPlaceBasket);
+                    itrBasket.remove();
+
+                }
             }
+        }
+        return listRemove;
+    }
+
+    public void showRemoveProductFromBasket(String name) {
+        List<Product> value = removeProductFromBasket(name);
+        StringBuilder stb = new StringBuilder();
+        if (value.isEmpty()) {
+            System.out.println("Продукт не найден в корзине");
+        } else {
+            stb.append("Список удаленных продуктов: \n");
+            for (int i = 0; i < value.size(); i++) {
+                stb.append(value.get(i)).append('\n');
+            }
+            System.out.println(stb);
         }
     }
 }

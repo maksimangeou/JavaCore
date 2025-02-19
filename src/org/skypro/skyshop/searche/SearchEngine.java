@@ -17,7 +17,7 @@ public class SearchEngine {
         return searchItem;
     }
 
-    public void setSearchItem(LinkedList<Searchable> searchItem) {
+    public void setSearchItem(List<Searchable> searchItem) {
         this.searchItem = searchItem;
     }
 
@@ -46,13 +46,14 @@ public class SearchEngine {
         int quality = 0;
         int qualityTemp = 0;
         int index = 0;
-        for (Searchable searchItem: searchItem) {
+        for (Searchable searchItem : searchItem) {
             if (searchItem != null && isSearched(search, searchItem)) {
-                int indexSearch = searchItem.getStringRepresentation(search).indexOf(search, index);
+                String valueOfStringRepresentation = searchItem.getStringRepresentation(search);
+                int indexSearch = valueOfStringRepresentation.indexOf(search, index);
                 while (indexSearch != -1) {
                     quality++;
                     index = indexSearch + search.length();
-                    indexSearch = searchItem.getStringRepresentation(search).indexOf(search, index);
+                    indexSearch = valueOfStringRepresentation.indexOf(search, index);
                 }
 
                 if (qualityTemp < quality) {

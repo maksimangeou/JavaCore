@@ -5,6 +5,9 @@ import org.skypro.skyshop.product.*;
 import org.skypro.skyshop.product.article.Article;
 import org.skypro.skyshop.searche.SearchEngine;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class App {
     public static void main(String[] args) {
         SearchEngine searchEngine = new SearchEngine();
@@ -84,6 +87,7 @@ public class App {
         productBasket.addProductIntoBasket(tomato);
         productBasket.addProductIntoBasket(banana);
         productBasket.addProductIntoBasket(milk);
+        productBasket.addProductIntoBasket(orange);
         productBasket.addProductIntoBasket(chocolate);
         System.out.println();
 
@@ -104,7 +108,12 @@ public class App {
         System.out.println();
 
         System.out.println("Удаление продукта по ключевому слову");
-        productBasket.removeProductFromBasket("апельсин");
+        System.out.println("-апельсины");
+        productBasket.showRemoveProductFromBasket("апельсин");
+        System.out.println("-молоко");
+        productBasket.showRemoveProductFromBasket("молоко");
+        System.out.println("несуществующий в корзине - яблоки");
+        productBasket.showRemoveProductFromBasket("яблоки");
         System.out.println();
         productBasket.showBasket();
         System.out.println();
