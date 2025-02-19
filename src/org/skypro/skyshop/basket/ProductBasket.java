@@ -97,7 +97,6 @@ public class ProductBasket {
                 if (nextPlaceBasket.getName().equals(name)) {
                     listRemove.add(nextPlaceBasket);
                     itrBasket.remove();
-
                 }
             }
         }
