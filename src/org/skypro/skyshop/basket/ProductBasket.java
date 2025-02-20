@@ -89,15 +89,11 @@ public class ProductBasket {
     public List<Product> removeProductFromBasket(String name) {
         List<Product> listRemove = new LinkedList<>();
         Iterator<Product> itrBasket = basket.iterator();
-        if (basket.isEmpty()) {
-            listRemove = null;
-        } else {
-            for (int i = 0; i < basket.size(); i++) {
-                Product nextPlaceBasket = itrBasket.next();
-                if (nextPlaceBasket.getName().equals(name)) {
-                    listRemove.add(nextPlaceBasket);
-                    itrBasket.remove();
-                }
+        while (itrBasket.hasNext()) {
+            Product nextPlaceBasket = itrBasket.next();
+            if (nextPlaceBasket.getName().equals(name)) {
+                listRemove.add(nextPlaceBasket);
+                itrBasket.remove();
             }
         }
         return listRemove;

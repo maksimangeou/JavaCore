@@ -5,9 +5,6 @@ import org.skypro.skyshop.product.*;
 import org.skypro.skyshop.product.article.Article;
 import org.skypro.skyshop.searche.SearchEngine;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class App {
     public static void main(String[] args) {
         SearchEngine searchEngine = new SearchEngine();
