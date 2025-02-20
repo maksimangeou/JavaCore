@@ -7,7 +7,7 @@ import org.skypro.skyshop.searche.SearchEngine;
 
 public class App {
     public static void main(String[] args) {
-        SearchEngine searchEngine = new SearchEngine(20);
+        SearchEngine searchEngine = new SearchEngine();
 
         ProductBasket productBasket = new ProductBasket();
 
@@ -31,6 +31,7 @@ public class App {
         Product banana = new DiscountedProduct("бананы", 249, 30);
         Product milk = new FixPriceProduct("молоко");
         Product chocolate = new DiscountedProduct("шоколад", 39.99, 20);
+        Product potato = new DiscountedProduct("картофель", 59.99, 5);
 
         Article article1 = new Article("Польза апельсинов", "Текст номер 1 про апельсины");
         Article article2 = new Article("Садоводы и огородники", "Текст содержит в себе огурцы и помидоры");
@@ -83,9 +84,7 @@ public class App {
         productBasket.addProductIntoBasket(tomato);
         productBasket.addProductIntoBasket(banana);
         productBasket.addProductIntoBasket(milk);
-        System.out.println();
-
-        System.out.println("Добавление продукта в заполненную корзину");
+        productBasket.addProductIntoBasket(orange);
         productBasket.addProductIntoBasket(chocolate);
         System.out.println();
 
@@ -102,7 +101,18 @@ public class App {
         System.out.println();
 
         System.out.println("Поиск товара, которого нет в корзине");
-        productBasket.searchProductInBasket(chocolate);
+        productBasket.searchProductInBasket(potato);
+        System.out.println();
+
+        System.out.println("Удаление продукта по ключевому слову");
+        System.out.println("-апельсины");
+        productBasket.showRemoveProductFromBasket("апельсин");
+        System.out.println("-молоко");
+        productBasket.showRemoveProductFromBasket("молоко");
+        System.out.println("несуществующий в корзине - яблоки");
+        productBasket.showRemoveProductFromBasket("яблоки");
+        System.out.println();
+        productBasket.showBasket();
         System.out.println();
 
         System.out.println("Очистка корзины");
