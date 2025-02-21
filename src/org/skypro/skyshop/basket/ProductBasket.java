@@ -72,8 +72,7 @@ public class ProductBasket {
 
     public void searchProductInBasket(Product product) {
         if (basket.isEmpty()) {
-            System.out.println("В корзине пусто \n" +
-                    "Продукт " + product.getName() + " не найден");
+            System.out.println("В корзине пусто \n" + "Продукт " + product.getName() + " не найден");
         } else if (isProductNameInBasket(product.getName())) {
             System.out.println("Продукт " + product.getName() + " найден");
         } else {
