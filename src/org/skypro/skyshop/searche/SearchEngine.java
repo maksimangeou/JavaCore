@@ -1,10 +1,13 @@
 package org.skypro.skyshop.searche;
 
 import org.skypro.skyshop.exception.BestResultNotFound;
+import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.searchable.Searchable;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class SearchEngine {
     private List<Searchable> searchItem;
@@ -29,12 +32,14 @@ public class SearchEngine {
         return !searchItem.searchTerm(term).equals(Searchable.CODE_NULL);
     }
 
-    public void search(String term) {
+    public Map<String, Searchable> search(String term) {
+        Map<String, Searchable> mapSearch = new HashMap<>();
         for (Searchable searchItem : searchItem) {
             if (isSearched(term, searchItem)) {
-                System.out.println(searchItem.getStringRepresentation(term) + '\n');
+                mapSearch.put(term,searchItem);
             }
         }
+        return mapSearch;
     }
 
     public Searchable searchMaxQualityTerm(String search) {
