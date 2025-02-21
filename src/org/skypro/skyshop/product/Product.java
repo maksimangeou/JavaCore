@@ -4,7 +4,7 @@ import org.skypro.skyshop.product.searchable.Searchable;
 
 import java.lang.runtime.SwitchBootstraps;
 
-public abstract class Product implements Searchable, Comparable<Product> {
+public abstract class Product implements Searchable {
 
     private String name;
 
@@ -49,10 +49,5 @@ public abstract class Product implements Searchable, Comparable<Product> {
     @Override
     public String getSearchedContent() {
         return "PRODUCT";
-    }
-
-    @Override
-    public int compareTo(Product other) {
-        return name.compareTo(other.name);
     }
 }

@@ -2,7 +2,7 @@ package org.skypro.skyshop.product.article;
 
 import org.skypro.skyshop.product.searchable.Searchable;
 
-public final class Article implements Searchable, Comparable<Article> {
+public final class Article implements Searchable {
     private String title;
     private String text;
 
@@ -43,10 +43,5 @@ public final class Article implements Searchable, Comparable<Article> {
     @Override
     public String getSearchedContent() {
         return "ARTICLE";
-    }
-
-    @Override
-    public int compareTo(Article other) {
-        return title.compareTo(other.title);
     }
 }
