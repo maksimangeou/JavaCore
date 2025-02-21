@@ -4,10 +4,7 @@ import org.skypro.skyshop.exception.BestResultNotFound;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.searchable.Searchable;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SearchEngine {
     private List<Searchable> searchItem;
@@ -32,14 +29,23 @@ public class SearchEngine {
         return !searchItem.searchTerm(term).equals(Searchable.CODE_NULL);
     }
 
-    public Map<String, Searchable> search(String term) {
-        Map<String, Searchable> mapSearch = new HashMap<>();
+    public Map<String, List<Searchable>> search(String term) {
+        Map<String, List<Searchable>> mapSearch = new HashMap<>();
         for (Searchable searchItem : searchItem) {
             if (isSearched(term, searchItem)) {
-                mapSearch.put(term,searchItem);
+                mapSearch.computeIfAbsent(term, _ -> new ArrayList<>()).add(searchItem);
             }
         }
         return mapSearch;
+    }
+
+    public void showSearch(String term) {
+        Map <String,List<Product>> map = null;
+        if (search(term).isEmpty()) {
+            System.out.println("Корзина пустая");
+        } else {
+            System.out.println(search(term));
+        }
     }
 
     public Searchable searchMaxQualityTerm(String search) {
