@@ -1,7 +1,6 @@
 package org.skypro.skyshop.searche;
 
 import org.skypro.skyshop.exception.BestResultNotFound;
-import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.searchable.Searchable;
 
 import java.util.*;
