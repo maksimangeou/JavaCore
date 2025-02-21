@@ -54,9 +54,7 @@ public class ProductBasket {
                 }
             }
         }
-        System.out.println("Итого: " +
-
-                getPriceBasket() + '\n' + "Специальных товаров: " + count);
+        System.out.println("Итого: " + getPriceBasket() + '\n' + "Специальных товаров: " + count);
     }
 
     public boolean isProductNameInBasket(String name) {
