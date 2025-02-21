@@ -21,7 +21,7 @@ public class ProductBasket {
     }
 
     public void addProductIntoBasket(Product product) {
-        basket.computeIfAbsent(product.getName(), k -> new ArrayList<>()).add(product);
+        basket.computeIfAbsent(product.getName(), _ -> new ArrayList<>()).add(product);
     }
 
     public double getPriceBasket() {
@@ -44,14 +44,12 @@ public class ProductBasket {
             System.out.println("В корзине пусто");
         } else {
             for (Map.Entry<String, List<Product>> valueBasket : basket.entrySet()) {
-                Iterator<Product> itrValue = valueBasket.getValue().iterator();
-                while (itrValue.hasNext()){
-                    Product nextValue = itrValue.next();
-                    if (nextValue.isSpecial()) {
-                        System.out.println(valueBasket);
+                for (Product productValue : valueBasket.getValue()) {
+                    if (productValue.isSpecial()) {
+                        System.out.println(productValue);
                         count++;
-                    } else if (nextValue != null) {
-                        System.out.println(nextValue);
+                    } else {
+                        System.out.println(productValue);
                     }
                 }
             }
@@ -62,9 +60,11 @@ public class ProductBasket {
     }
 
     public boolean isProductNameInBasket(String name) {
-        for (Product value : basket) {
-            if (value.getName().equals(name)) {
-                return true;
+        for (Map.Entry<String, List<Product>> valueBasket : basket.entrySet()) {
+            for (Product value : valueBasket.getValue()) {
+                if (value.getName().equals(name)) {
+                    return true;
+                }
             }
         }
         return false;
@@ -92,12 +92,14 @@ public class ProductBasket {
 
     public List<Product> removeProductFromBasket(String name) {
         List<Product> listRemove = new LinkedList<>();
-        Iterator<Product> itrBasket = basket.iterator();
-        while (itrBasket.hasNext()) {
-            Product nextPlaceBasket = itrBasket.next();
-            if (nextPlaceBasket.getName().equals(name)) {
-                listRemove.add(nextPlaceBasket);
-                itrBasket.remove();
+        for (Map.Entry<String, List<Product>> valueBasket : basket.entrySet()) {
+            Iterator<Product> itrBasket = valueBasket.getValue().iterator();
+            while (itrBasket.hasNext()) {
+                Product nextPlaceBasket = itrBasket.next();
+                if (nextPlaceBasket.getName().equals(name)) {
+                    listRemove.add(nextPlaceBasket);
+                    itrBasket.remove();
+                }
             }
         }
         return listRemove;
