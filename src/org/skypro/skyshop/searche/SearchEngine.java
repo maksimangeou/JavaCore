@@ -26,11 +26,7 @@ public class SearchEngine {
     }
 
     public boolean isSearched(String term, Searchable searchItem) {
-        boolean key = true;
-        if (searchItem.searchTerm(term).equals(Searchable.CODE_NULL)) {
-            key = false;
-        }
-        return key;
+        return !searchItem.searchTerm(term).equals(Searchable.CODE_NULL);
     }
 
     public void search(String term) {

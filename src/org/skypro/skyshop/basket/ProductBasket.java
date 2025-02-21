@@ -1,29 +1,26 @@
 package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.product.Product;
-
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class ProductBasket {
 
-    private List<Product> basket;
+    private Map<String, List<Product>> basket;
 
     public ProductBasket() {
-        basket = new LinkedList<>();
+        basket = new LinkedHashMap<>();
     }
 
-    public List<Product> getBasket() {
+    public Map<String, List<Product>> getBasket() {
         return basket;
     }
 
-    public void setBasket(List<Product> basket) {
+    public void setBasket(Map<String,List<Product>> basket) {
         this.basket = basket;
     }
 
     public void addProductIntoBasket(Product product) {
-        basket.add(product);
+        basket.put(product.getName(),product);
     }
 
     public double getPriceBasket() {
@@ -106,8 +103,8 @@ public class ProductBasket {
             System.out.println("Продукт не найден в корзине");
         } else {
             stb.append("Список удаленных продуктов: \n");
-            for (int i = 0; i < value.size(); i++) {
-                stb.append(value.get(i)).append('\n');
+            for (Product product : value) {
+                stb.append(product).append('\n');
             }
             System.out.println(stb);
         }
