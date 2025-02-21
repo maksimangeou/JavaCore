@@ -1,6 +1,7 @@
 package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.product.Product;
+
 import java.util.*;
 
 public class ProductBasket {
@@ -15,7 +16,7 @@ public class ProductBasket {
         return basket;
     }
 
-    public void setBasket(Map<String,List<Product>> basket) {
+    public void setBasket(Map<String, List<Product>> basket) {
         this.basket = basket;
     }
 
@@ -25,11 +26,9 @@ public class ProductBasket {
 
     public double getPriceBasket() {
         double price = 0;
-        for (Map.Entry<String, List<Product>> value : basket.entrySet()) {
-            Iterator<Product> itrValue = value.getValue().iterator();
-            while (itrValue.hasNext()) {
-                Product nextValue = itrValue.next();
-                price += nextValue.getPrice();
+        for (Map.Entry<String, List<Product>> valueBasket : basket.entrySet()) {
+            for (Product value : valueBasket.getValue()) {
+                price += value.getPrice();
             }
         }
         return price;
@@ -44,16 +43,22 @@ public class ProductBasket {
         if (basket.isEmpty()) {
             System.out.println("В корзине пусто");
         } else {
-            for (Product value : basket) {
-                if (value != null && value.isSpecial()) {
-                    System.out.println(value);
-                    count++;
-                } else if (value != null) {
-                    System.out.println(value);
+            for (Map.Entry<String, List<Product>> valueBasket : basket.entrySet()) {
+                Iterator<Product> itrValue = valueBasket.getValue().iterator();
+                while (itrValue.hasNext()){
+                    Product nextValue = itrValue.next();
+                    if (nextValue.isSpecial()) {
+                        System.out.println(valueBasket);
+                        count++;
+                    } else if (nextValue != null) {
+                        System.out.println(nextValue);
+                    }
                 }
             }
         }
-        System.out.println("Итого: " + getPriceBasket() + '\n' + "Специальных товаров: " + count);
+        System.out.println("Итого: " +
+
+                getPriceBasket() + '\n' + "Специальных товаров: " + count);
     }
 
     public boolean isProductNameInBasket(String name) {
