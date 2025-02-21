@@ -30,7 +30,7 @@ public class SearchEngine {
     }
 
     public Map<String, List<Searchable>> search(String term) {
-        Map<String, List<Searchable>> mapSearch = new HashMap<>();
+        Map<String, List<Searchable>> mapSearch = new TreeMap<>();
         for (Searchable searchItem : searchItem) {
             if (isSearched(term, searchItem)) {
                 mapSearch.computeIfAbsent(term, _ -> new ArrayList<>()).add(searchItem);

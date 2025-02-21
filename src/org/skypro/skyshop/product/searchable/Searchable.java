@@ -11,6 +11,4 @@ public interface Searchable {
     default String getStringRepresentation(String term) {
         return searchTerm(term) + '\n' + getSearchedContent();
     }
-
-
 }
