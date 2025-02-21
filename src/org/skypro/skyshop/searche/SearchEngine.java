@@ -40,11 +40,11 @@ public class SearchEngine {
     }
 
     public void showSearch(String term) {
-        Map <String,List<Product>> map = null;
-        if (search(term).isEmpty()) {
+        Map <String,List<Searchable>> map = search(term);
+        if (map.isEmpty()) {
             System.out.println("Корзина пустая");
         } else {
-            System.out.println(search(term));
+            System.out.println(map);
         }
     }
 
