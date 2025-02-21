@@ -20,14 +20,16 @@ public class ProductBasket {
     }
 
     public void addProductIntoBasket(Product product) {
-        basket.put(product.getName(),product);
+        basket.computeIfAbsent(product.getName(), k -> new ArrayList<>()).add(product);
     }
 
     public double getPriceBasket() {
         double price = 0;
-        for (Product value : basket) {
-            if (value != null) {
-                price += value.getPrice();
+        for (Map.Entry<String, List<Product>> value : basket.entrySet()) {
+            Iterator<Product> itrValue = value.getValue().iterator();
+            while (itrValue.hasNext()) {
+                Product nextValue = itrValue.next();
+                price += nextValue.getPrice();
             }
         }
         return price;
