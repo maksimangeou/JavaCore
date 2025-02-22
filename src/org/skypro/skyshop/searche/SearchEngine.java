@@ -29,7 +29,7 @@ public class SearchEngine {
     }
 
     public Set<Searchable> search(String term) {
-        Set<Searchable> setSearch = new TreeSet<>(new sortText());
+        Set<Searchable> setSearch = new TreeSet<>(new SortText());
         for (Searchable searchItem : searchItem) {
             if (isSearched(term, searchItem)) {
                 setSearch.add(searchItem);
@@ -38,7 +38,7 @@ public class SearchEngine {
         return setSearch;
     }
 
-    public static class sortText implements Comparator<Searchable> {
+    public static class SortText implements Comparator<Searchable> {
         @Override
         public int compare(Searchable o1, Searchable o2) {
             int i1 = o1.toString().length();
