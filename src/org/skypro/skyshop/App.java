@@ -60,13 +60,13 @@ public class App {
 
         System.out.println("Поиск по ключевому слову");
         System.out.println("-апельсин");
-        searchEngine.search("апельсин");
+        searchEngine.showSearch("апельсин");
         System.out.println("-огородник");
-        searchEngine.search("огородник");
+        searchEngine.showSearch("огородник");
         System.out.println("-помидоры");
-        searchEngine.search("помидоры");
+        searchEngine.showSearch("помидоры");
         System.out.println("-Лактоза");
-        searchEngine.search("Лактоза");
+        searchEngine.showSearch("Лактоза");
         System.out.println();
 
         System.out.println("Поиск по ключевому слову максимальное кол-во повторений");

@@ -2,6 +2,8 @@ package org.skypro.skyshop.product;
 
 import org.skypro.skyshop.product.searchable.Searchable;
 
+import java.lang.runtime.SwitchBootstraps;
+
 public abstract class Product implements Searchable {
 
     private String name;

@@ -2,34 +2,32 @@ package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.product.Product;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class ProductBasket {
 
-    private List<Product> basket;
+    private Map<String, List<Product>> basket;
 
     public ProductBasket() {
-        basket = new LinkedList<>();
+        basket = new LinkedHashMap<>();
     }
 
-    public List<Product> getBasket() {
+    public Map<String, List<Product>> getBasket() {
         return basket;
     }
 
-    public void setBasket(List<Product> basket) {
+    public void setBasket(Map<String, List<Product>> basket) {
         this.basket = basket;
     }
 
     public void addProductIntoBasket(Product product) {
-        basket.add(product);
+        basket.computeIfAbsent(product.getName(), _ -> new ArrayList<>()).add(product);
     }
 
     public double getPriceBasket() {
         double price = 0;
-        for (Product value : basket) {
-            if (value != null) {
+        for (Map.Entry<String, List<Product>> valueBasket : basket.entrySet()) {
+            for (Product value : valueBasket.getValue()) {
                 price += value.getPrice();
             }
         }
@@ -45,12 +43,14 @@ public class ProductBasket {
         if (basket.isEmpty()) {
             System.out.println("В корзине пусто");
         } else {
-            for (Product value : basket) {
-                if (value != null && value.isSpecial()) {
-                    System.out.println(value);
-                    count++;
-                } else if (value != null) {
-                    System.out.println(value);
+            for (Map.Entry<String, List<Product>> valueBasket : basket.entrySet()) {
+                for (Product productValue : valueBasket.getValue()) {
+                    if (productValue.isSpecial()) {
+                        System.out.println(productValue);
+                        count++;
+                    } else {
+                        System.out.println(productValue);
+                    }
                 }
             }
         }
@@ -58,9 +58,11 @@ public class ProductBasket {
     }
 
     public boolean isProductNameInBasket(String name) {
-        for (Product value : basket) {
-            if (value.getName().equals(name)) {
-                return true;
+        for (Map.Entry<String, List<Product>> valueBasket : basket.entrySet()) {
+            for (Product value : valueBasket.getValue()) {
+                if (value.getName().equals(name)) {
+                    return true;
+                }
             }
         }
         return false;
@@ -68,8 +70,7 @@ public class ProductBasket {
 
     public void searchProductInBasket(Product product) {
         if (basket.isEmpty()) {
-            System.out.println("В корзине пусто \n" +
-                    "Продукт " + product.getName() + " не найден");
+            System.out.println("В корзине пусто \n" + "Продукт " + product.getName() + " не найден");
         } else if (isProductNameInBasket(product.getName())) {
             System.out.println("Продукт " + product.getName() + " найден");
         } else {
@@ -88,12 +89,14 @@ public class ProductBasket {
 
     public List<Product> removeProductFromBasket(String name) {
         List<Product> listRemove = new LinkedList<>();
-        Iterator<Product> itrBasket = basket.iterator();
-        while (itrBasket.hasNext()) {
-            Product nextPlaceBasket = itrBasket.next();
-            if (nextPlaceBasket.getName().equals(name)) {
-                listRemove.add(nextPlaceBasket);
-                itrBasket.remove();
+        for (Map.Entry<String, List<Product>> valueBasket : basket.entrySet()) {
+            Iterator<Product> itrBasket = valueBasket.getValue().iterator();
+            while (itrBasket.hasNext()) {
+                Product nextPlaceBasket = itrBasket.next();
+                if (nextPlaceBasket.getName().equals(name)) {
+                    listRemove.add(nextPlaceBasket);
+                    itrBasket.remove();
+                }
             }
         }
         return listRemove;
@@ -106,8 +109,8 @@ public class ProductBasket {
             System.out.println("Продукт не найден в корзине");
         } else {
             stb.append("Список удаленных продуктов: \n");
-            for (int i = 0; i < value.size(); i++) {
-                stb.append(value.get(i)).append('\n');
+            for (Product product : value) {
+                stb.append(product).append('\n');
             }
             System.out.println(stb);
         }

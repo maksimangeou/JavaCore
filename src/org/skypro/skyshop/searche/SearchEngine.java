@@ -3,8 +3,7 @@ package org.skypro.skyshop.searche;
 import org.skypro.skyshop.exception.BestResultNotFound;
 import org.skypro.skyshop.product.searchable.Searchable;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class SearchEngine {
     private List<Searchable> searchItem;
@@ -26,18 +25,25 @@ public class SearchEngine {
     }
 
     public boolean isSearched(String term, Searchable searchItem) {
-        boolean key = true;
-        if (searchItem.searchTerm(term).equals(Searchable.CODE_NULL)) {
-            key = false;
-        }
-        return key;
+        return !searchItem.searchTerm(term).equals(Searchable.CODE_NULL);
     }
 
-    public void search(String term) {
+    public Map<String, List<Searchable>> search(String term) {
+        Map<String, List<Searchable>> mapSearch = new TreeMap<>();
         for (Searchable searchItem : searchItem) {
             if (isSearched(term, searchItem)) {
-                System.out.println(searchItem.getStringRepresentation(term) + '\n');
+                mapSearch.computeIfAbsent(term, _ -> new ArrayList<>()).add(searchItem);
             }
+        }
+        return mapSearch;
+    }
+
+    public void showSearch(String term) {
+        Map <String,List<Searchable>> map = search(term);
+        if (map.isEmpty()) {
+            System.out.println("Корзина пустая");
+        } else {
+            System.out.println(map);
         }
     }
 
