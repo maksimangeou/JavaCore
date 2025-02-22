@@ -3,6 +3,7 @@ package org.skypro.skyshop.basket;
 import org.skypro.skyshop.product.Product;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class ProductBasket {
 
@@ -25,36 +26,33 @@ public class ProductBasket {
     }
 
     public double getPriceBasket() {
-        double price = 0;
-        for (Map.Entry<String, List<Product>> valueBasket : basket.entrySet()) {
-            for (Product value : valueBasket.getValue()) {
-                price += value.getPrice();
-            }
-        }
-        return price;
+        return basket.values()
+                .stream()
+                .flatMap(Collection::stream)
+                .mapToDouble(Product::getPrice)
+                .sum();
     }
 
     public void showPriceBasket() {
         System.out.println("Стоимость корзины: " + getPriceBasket());
     }
 
+    private int getSpecialProduct() {
+        return Math.toIntExact(basket.values().stream()
+                .flatMap(Collection::stream)
+                .filter(Product::isSpecial)
+                .count());
+    }
+
     public void showBasket() {
-        int count = 0;
         if (basket.isEmpty()) {
             System.out.println("В корзине пусто");
         } else {
-            for (Map.Entry<String, List<Product>> valueBasket : basket.entrySet()) {
-                for (Product productValue : valueBasket.getValue()) {
-                    if (productValue.isSpecial()) {
-                        System.out.println(productValue);
-                        count++;
-                    } else {
-                        System.out.println(productValue);
-                    }
-                }
-            }
+            basket.values().stream()
+                    .flatMap(Collection::stream)
+                    .forEach(System.out::println);
         }
-        System.out.println("Итого: " + getPriceBasket() + '\n' + "Специальных товаров: " + count);
+        System.out.println("Итого: " + getPriceBasket() + '\n' + "Специальных товаров: " + getSpecialProduct());
     }
 
     public boolean isProductNameInBasket(String name) {
