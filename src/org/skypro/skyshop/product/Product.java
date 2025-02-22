@@ -50,4 +50,14 @@ public abstract class Product implements Searchable {
     public String getSearchedContent() {
         return "PRODUCT";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
