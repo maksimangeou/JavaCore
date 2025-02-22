@@ -6,17 +6,17 @@ import org.skypro.skyshop.product.searchable.Searchable;
 import java.util.*;
 
 public class SearchEngine {
-    private List<Searchable> searchItem;
+    private Set<Searchable> searchItem;
 
     public SearchEngine() {
-        this.searchItem = new LinkedList<>();
+        this.searchItem = new HashSet<>();
     }
 
-    public List<Searchable> getSearchItem() {
+    public Set<Searchable> getSearchItem() {
         return searchItem;
     }
 
-    public void setSearchItem(List<Searchable> searchItem) {
+    public void setSearchItem(Set<Searchable> searchItem) {
         this.searchItem = searchItem;
     }
 
@@ -28,22 +28,35 @@ public class SearchEngine {
         return !searchItem.searchTerm(term).equals(Searchable.CODE_NULL);
     }
 
-    public Map<String, List<Searchable>> search(String term) {
-        Map<String, List<Searchable>> mapSearch = new TreeMap<>();
+    public Set<Searchable> search(String term) {
+        Set<Searchable> setSearch = new TreeSet<>(new SortText());
         for (Searchable searchItem : searchItem) {
             if (isSearched(term, searchItem)) {
-                mapSearch.computeIfAbsent(term, _ -> new ArrayList<>()).add(searchItem);
+                setSearch.add(searchItem);
             }
         }
-        return mapSearch;
+        return setSearch;
+    }
+
+    public static class SortText implements Comparator<Searchable> {
+        @Override
+        public int compare(Searchable o1, Searchable o2) {
+            int i1 = o1.toString().length();
+            int i2 = o2.toString().length();
+            int i = Integer.compare(i1,i2);
+            if (i == 0) {
+               return o1.toString().compareTo(o2.toString());
+            }
+            return i;
+        }
     }
 
     public void showSearch(String term) {
-        Map <String,List<Searchable>> map = search(term);
-        if (map.isEmpty()) {
+        Set<Searchable> set = search(term);
+        if (set.isEmpty()) {
             System.out.println("Корзина пустая");
         } else {
-            System.out.println(map);
+            System.out.println(set);
         }
     }
 

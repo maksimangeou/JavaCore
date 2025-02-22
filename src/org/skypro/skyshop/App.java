@@ -40,13 +40,15 @@ public class App {
         Article article5 = new Article("Молоко3", "Лактоза3, Молоко - враг здоровью человека");
         Article article6 = new Article("Молоко4", "Лактоза4 - враг здоровью человека");
         Article article7 = new Article("Молоко5", "Лактоза5 - враг здоровью человека");
-        Article article8 = new Article("Молоко6", "Лактоза6 - враг здоровью человека"); //чтобы проверить вывод не более 5 результатов
+        Article article8 = new Article("Молоко6", "Лактоза6 - враг здоровью человека");
         Article article9 = new Article("Еще одна статья об апельсинах", "Текст два");
         System.out.println();
 
         System.out.println("Добавление позиций в массив поиска");
         searchEngine.add(orange);
         searchEngine.add(article1);
+        searchEngine.add(orange); //посмотреть дубли в поиске
+        searchEngine.add(article1); //посмотреть дубли в поиске
         searchEngine.add(article2);
         searchEngine.add(tomato);
         searchEngine.add(article3);
