@@ -4,6 +4,7 @@ import org.skypro.skyshop.exception.BestResultNotFound;
 import org.skypro.skyshop.product.searchable.Searchable;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class SearchEngine {
     private Set<Searchable> searchItem;
@@ -29,13 +30,10 @@ public class SearchEngine {
     }
 
     public Set<Searchable> search(String term) {
-        Set<Searchable> setSearch = new TreeSet<>(new SortText());
-        for (Searchable searchItem : searchItem) {
-            if (isSearched(term, searchItem)) {
-                setSearch.add(searchItem);
-            }
-        }
-        return setSearch;
+        return searchItem
+                .stream()
+                .filter(i -> !i.searchTerm(term).equals(Searchable.CODE_NULL))
+                .collect(Collectors.toCollection(() -> new TreeSet<>(new SortText())));
     }
 
     public static class SortText implements Comparator<Searchable> {
@@ -43,9 +41,9 @@ public class SearchEngine {
         public int compare(Searchable o1, Searchable o2) {
             int i1 = o1.toString().length();
             int i2 = o2.toString().length();
-            int i = Integer.compare(i1,i2);
+            int i = Integer.compare(i1, i2);
             if (i == 0) {
-               return o1.toString().compareTo(o2.toString());
+                return o1.toString().compareTo(o2.toString());
             }
             return i;
         }
